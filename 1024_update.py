@@ -18,12 +18,16 @@ IMG_HIGHT = 1024
 IMG_CHANNELS = 3
 
 
-TRAINING_PATH = "/Users/denis/PycharmProjects/Segmentation/train1/"
-TEST_PATH = "/Users/denis/PycharmProjects/Segmentation/test/"
 
-train_ids = next(os.walk(TRAINING_PATH))[1]
-test_ids=next(os.walk(TEST_PATH))[1]
-##print(test_ids)
+train_ids= []
+test_ids= []
+
+for path, train_ids, folders in os.walk(TRAINING_PATH):
+    train_ids = sorted(train_ids)
+    break
+for path, test_ids, folders in os.walk(TEST_PATH):
+    test_ids = sorted(test_ids)
+    break
 
 X_TRAIN = np.zeros((len(train_ids), IMG_HIGHT, IMG_WIGTH, IMG_CHANNELS), dtype=np.uint8)
 Y_TRAIN = np.zeros((len(train_ids), IMG_HIGHT, IMG_WIGTH, 1,), dtype=np.bool)
